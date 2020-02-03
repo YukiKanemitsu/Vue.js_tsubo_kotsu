@@ -7,50 +7,67 @@
     <style>
         .ball {
             position: absolute;
-            }
+        }
+        .capitalize {
+            text-transform: capitalize;
+        }
     </style>
 </head>
 <body>
     <script src="https://jp.vuejs.org/js/vue.js"></script>
 
-    <div id="ball">
-        <pre>
-            {{ $data }}
-        </pre>
-    </div>
-
     <div id="app">
-        <input type="text" v-bind:value="message">
+        <p v-bind:style="{fontSize: pSize}">文字サイズは {{ pSize }} です。</p>
+        <p v-bind:class="{capitalize: isCapital}">hello! vue!</p>
+
+        <table border="1">
+            <tr>
+                <th>
+                    商品コード
+                </th>
+                <th>
+                    商品名
+                </th>
+            </tr>
+            <tr v-for="item in products" v-bind:key="item.code">
+                <td>
+                    {{ item.code }}
+                </td>
+                <td>
+                    {{ item.name }}
+                </td>
+            </tr>
+        </table>
+        {{ price }}円 <span v-if="price < 1000">セール実施中！</span>
+        <span v-if="stock >= 1">残り {{ stock }}個です</span>
+        <span v-else>在庫切れです</span>
+        {{ price }}円 <span v-show="price < 1000">セール実施中！</span>
+
     </div>
     
 <script>  
     var app = new Vue ({
         el: '#app',
         data: {
-            message: 'こんにちは！',
-            message_en: 'Hello!',
-            lang: 'ja'
-        },
-    });  
-
-    var ball = new Vue ({
-        el: '#ball',
-        data: {
-            pos: { x: 0, y: 0},
-            radius: 20
-        },
-        methods: {
-            move: function(x, y) {
-                this.pos.x += x;
-                this.pos.y += y;
-            }
+            pSize: '40px',
+            isCapital: true,
+            products: [
+                {
+                    code: 'A01', name: 'プロダクトA',
+                },
+                {
+                    code: 'B01', name: 'プロダクトB',
+                },
+                {
+                    code: 'C01', name: 'プロダクトC',
+                }
+            ],
+            price: 1280,
+            stock: 0
         }
     });
 
-    // ボールをx方向へ100px, y方向へ100px動かす
-    ball.move(100, 100);
-    // ボールの半径を40pxに変更する
-    ball.radius = 40;
+
 </script>
 </body>
 </html>
