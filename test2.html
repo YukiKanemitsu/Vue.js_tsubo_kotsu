@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>サンプル</title>
+    <link rel="stylesheet" href="main.css">
+    <style>
+        .ball {
+            position: absolute;
+            }
+    </style>
+</head>
+<body>
+    <script src="https://jp.vuejs.org/js/vue.js"></script>
+
+    <div id="ball">
+        <pre>
+            {{ $data }}
+        </pre>
+    </div>
+
+    <div id="app">
+        <input type="text" v-bind:value="message">
+    </div>
+    
+<script>  
+    var app = new Vue ({
+        el: '#app',
+        data: {
+            message: 'こんにちは！',
+            message_en: 'Hello!',
+            lang: 'ja'
+        },
+    });  
+
+    var ball = new Vue ({
+        el: '#ball',
+        data: {
+            pos: { x: 0, y: 0},
+            radius: 20
+        },
+        methods: {
+            move: function(x, y) {
+                this.pos.x += x;
+                this.pos.y += y;
+            }
+        }
+    });
+
+    // ボールをx方向へ100px, y方向へ100px動かす
+    ball.move(100, 100);
+    // ボールの半径を40pxに変更する
+    ball.radius = 40;
+</script>
+</body>
+</html>
