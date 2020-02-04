@@ -7,7 +7,25 @@
 </head>
 <body>
     <div id="app">
-        {{ message }}
+        <p>
+            マウスカーソルの位置: {{ point.x }}, {{ point.y }}
+        </p>
+
+        ウィンドウの横幅: {{ width }}
+        <br>
+        ウィンドウの高さ: {{ height }}
+
+        <template v-if="stock >= 1">
+            <span class="num">
+                残り{{ stock }}個
+            </span>
+            <button class="btn" v-on:click="onDeleteItem">
+                削除
+            </button>
+        </template>
+        <template v-else>
+            在庫切れ
+        </template>
     </div>
 
     <script src="https://jp.vuejs.org/js/vue.js"></script>

@@ -17,12 +17,16 @@
     <script src="https://jp.vuejs.org/js/vue.js"></script>
 
     <div id="app">
-        {{ price }}円 <span v-if="price < 1000">セール実施中！</span>
-        <span v-if="stock >= 1">残り {{ stock }}個です</span>
-        <span v-else>在庫切れです</span>
-        {{ price }}円 <span v-show="price < 1000">セール実施中！</span>
-        
-        {{ price | unit }} {{ price | number_format | unit }}
+
+        <div v-show="show">
+            <p>
+                now1: "{{ now1() }}"
+            </p>            
+            <p>
+                now2: "{{ now2() }}"
+            </p>
+        </div>
+
     </div>
     
 <script> 
@@ -31,19 +35,20 @@
     var app = new Vue ({
         el: '#app',
         data: {
-            price: 1080,
-            stock: 0
+            show: true,
         },
-        filters: {
-            // 金額を3桁カンマ編集するフィルター
-            number_format: function(val) {
-                return val.toLocaleString();
-            },
-            // 金額の後ろに単位を付けるフィルター
-            unit: function(val) {
-                return val + '円';
+        methods: {
+            // 現在日時を返すメソッド
+            now1: function() {
+                return (new Date() ).toLocaleString();
             }
-        }
+        },
+        computed: {
+            // 現在日時を返す算出プロパティ
+            now2: function() {
+                return (new Date() ).toLocaleString();
+            }
+        }   
     });
 
 
