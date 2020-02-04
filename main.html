@@ -7,14 +7,6 @@
 </head>
 <body>
     <div id="app">
-        <p>
-            マウスカーソルの位置: {{ point.x }}, {{ point.y }}
-        </p>
-
-        ウィンドウの横幅: {{ width }}
-        <br>
-        ウィンドウの高さ: {{ height }}
-
         <template v-if="stock >= 1">
             <span class="num">
                 残り{{ stock }}個
@@ -23,9 +15,8 @@
                 削除
             </button>
         </template>
-        <template v-else>
-            在庫切れ
-        </template>
+        {{ statusMessage }}
+        <!-- {{ message }} -->
     </div>
 
     <script src="https://jp.vuejs.org/js/vue.js"></script>

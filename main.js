@@ -1,43 +1,28 @@
 var app = new Vue({
     el: "#app",
     data: {
-        point: { 
-            x: 0,
-            y: 0,
-        },
-        //ウィンドウサイズ
-        width: window.innerWidth,
-        height: window.innerHeight,
+        message: '',
         stock: 10
     },
-    created: function(){
-        //イベントハンドラを登録
-
-        addEventListener('mousemove', this.mousemoveHandler);
-        addEventListener('resize', this.resizeHandler);
-    },
-    beforeDestroy: function() {
-        //イベントハンドラを解除
-
-        removeEventListener('mousemove', this.mousemoveHandler);
-        removeEventListener('resize', this.resizeHandler);
-    },
     methods: {
-        // mousemoveイベントハンドラ
-        mousemoveHandler: function($event) {
-            this.point.x = $event.clientX;
-            this.point.y = $event.clientY;
-        },
-
-        // イベントハンドラ
-        resizeHandler: function ($event) {
-            // 現在のウィンドウサイズでプロパティを更新
-            this.width = $event.target.innerWidth;
-            this.height = $event.target.innerHeight;
-        },
         //削除ボタンのクリックイベントハンドラ
         onDeleteItem: function () {
             this.stock--;
+        }
+    },
+    computed: {
+        // 加工したメッセージを返す算出プロパティ
+        statusMessage: function () {
+            if (this.stock == 0) {
+                return '売り切れ';
+            }
+            return '';            
+        }
+    },
+    watch: {
+        // ステータスの変化を監視するウォッチャ
+        statusMessage: function () {
+            console.log('商品のステータスが変化しました');
         }
     }
 });
