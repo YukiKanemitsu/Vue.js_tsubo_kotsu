@@ -3,93 +3,35 @@
 <head>
     <meta charset="utf-8">
     <title>サンプル</title>
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://cdnjs/cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+    <!-- <link rel="stylesheet" href="main.css"> -->
 </head>
 <body>
     <div id="app">
-        <!-- <input type="text" v-on:input="yearInputHandler" v-bind:value="year">
-        <p>
-            {{ year }}
-        </p> -->
-        <!-- <textarea>
-            {{ message }}
-        </textarea>
-        <pre>
-            入力内容: {{ message }}
-        </pre> -->
-        <!-- <p>
-            ご注文をお選びください: {{ selection }}
-        </p>
-
-        <label>
-            <input type="checkbox" v-model="answer" value="ケーキ">ケーキ
-        </label>
-
-        <label>
-            <input type="checkbox" v-model="answer" value="紅茶">紅茶
-        </label>
-        
-        <label>
-            <input type="checkbox" v-model="answer" value="コーヒー">コーヒー
-        </label> -->
-        <!-- <p>
-            当店のサービスはいかがでしたか？: {{ answer }}
-        </p>
-        <label>
-            <input type="radio" v-model="answer" value="素晴らしい">素晴らしい
-        </label>
-        <label>
-            <input type="radio" v-model="answer" value="普通">普通
-        </label>
-        <label>
-            <input type="radio" v-model="answer" value="まだまだ">まだまだ
-        </label> -->
-        <p>
-            当店のご利用頻度は？: {{ answer }}
-        </p>
-        <select v-model="answer">
-            <option disabled value="">選択してください</option>
-            <option v-for="item in options"
-                    v-bind:value="item.label" v-bind:key="item.code">
-                    {{ item.label }}
-            </option>
-            <!-- <option value="初めて">初めて</option>
-            <option value="週一回以上">週一回以上</option>
-            <option value="月2回以上">月2回以上</option>
-            <option value="半年に一回">半年に一回</option> -->
-        </select>
-        <!-- <p>
-            分類: {{ selectedCategory }}
-        </p>
-        <select v-model="category" multiple>
-            <option value="宿泊費">宿泊費</option>
-            <option value="食費">食費</option>
-            <option value="交通費">交通費</option>
-        </select> -->
-
-        <p>
-            ご希望到着日: {{ arraival_date }}
-        </p>
-        <input type="date" v-model="arraival_date" v-bind:min="min_date">
-
-        <fieldset>
-            <legend>
-                あなたの好きな色は？
-            </legend>
-            <input type="color" v-model="color">
-                {{ color }}
+        <button v-on:click="show = !show">
+            表示を切り替える
+        </button>
+        <transition name="zoom"
+                    enter-active-class="animated zoomIn"
+                    leave-active-class="animated zoomOut">
+            <p v-if="show">
+                吾輩は猫である。名前はまだない。
                 <br>
-                赤: <input type="range" v-model.number="red" min="0" max="255" name="" id="">
-                {{ red }} 
+                どこで生まれたかとんと見当がつかぬ。
                 <br>
-                緑: <input type="range" v-model.number="green" min="0" max="255" name="" id="">
-                {{ green }} 
-                <br>
-                青: <input type="range" v-model.number="blue" min="0" max="255" name="" id="">
-                {{ blue }} 
-                <br>
-        </fieldset>
+                何でも薄暗いじめじめしたところでニャーニャー泣いていた事だけは記憶している。
+            </p>
+        </transition>
 
+        <transition name="slideInLeft">
+            <p v-if="show">
+                吾輩は猫である。名前はまだない。
+                <br>
+                どこで生まれたかとんと見当がつかぬ。
+                <br>
+                何でも薄暗いじめじめしたところでニャーニャー泣いていた事だけは記憶している。
+            </p>
+        </transition>
     </div>
 
     <script src="https://jp.vuejs.org/js/vue.js"></script>
