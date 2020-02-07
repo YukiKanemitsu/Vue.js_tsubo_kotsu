@@ -1,28 +1,44 @@
-// 「動くモノ」クラスの定義
-var Movable = function(x, y) {
-    this.pos = {
-        x: x,
-        y: y
-    };
-    this.move = function(x, y) {
-        this.pos.x += x;
-        this.pos.y += y;
-    };
+// 金額の配列
+var array_price = [1280, 1980, 1580, 980, 1680, 1780];
+
+// 値が小さい順に並び変える比較関数
+function desc_order(a, b) {
+    if (a < b) {
+        return -1;
+    }
+    if (a == b) {
+        return 1;
+    }
+    return 0;
 }
 
-// ボールオブジェクトを格納する空の配列を用意する
-var ball = [];
+// 安い順にソート
+array_price.sort(desc_order);
 
-// 100個分の繰り返し 
-for (var i = 0; i<= 100; i++) {
-    // ボールオブジェクトのインスタンスを生成する 
-    ball[i] = new Movable (
-        Math.floor(Math.random() * window.innerWidth),
-        Math.floor(Math.random() * window.innerHight)
-    );
-}
+console.log(array_price);
 
-// ボールをブラウザに描画する
-for (var i = 0; i <= 100; i++) {
-    document.write('<div class="ball" style="top:' + ball[i].pos.y + 'px; left' + ball[i].pos.x + 'px;">●</div>');    
-}
+var products = [
+    {
+        ID: 1, price: 1280,
+    },
+    {
+        ID: 2, price: 1980,
+    },   
+    {
+        ID: 3, price: 980,
+    },
+    {
+        ID: 4, price: 1680,
+    },
+    {
+        ID: 5, price: 1780,
+    }
+];
+
+// 安い順にソート
+products.sort(function (a, b) {
+    return a.price - b.price; 
+});
+
+// 並び変えた結果
+console.log(products);
