@@ -13,50 +13,7 @@ var app = new Vue({
         // 「並び替え」の選択値(1:標準、2:価格が安い順)
         sortOrder: 1,
         // 商品リスト
-        products: [
-            { 
-                name: 'Michael<br>スマホケース',
-                price: 1580,
-                image: 'images/01.jpg',
-                delv: 0,
-                isSale: true,
-            },
-            { 
-                name: 'Raphael<br>スマホケース',
-                price: 1580,
-                image: 'images/02.jpg',
-                delv: 0,
-                isSale: true,
-            },
-            { 
-                name: 'Gabriel<br>スマホケース',
-                price: 1580,
-                image: 'images/03.jpg',
-                delv: 240,
-                isSale: true,
-            },
-            { 
-                name: 'Uriel<br>スマホケース',
-                price: 980,
-                image: 'images/04.jpg',
-                delv: 0,
-                isSale: true,
-            },
-            { 
-                name: 'Ariel<br>スマホケース',
-                price: 980,
-                image: 'images/05.jpg',
-                delv: 0,
-                isSale: false,
-            },
-            { 
-                name: 'Azrael<br>スマホケース',
-                price: 1580,
-                image: 'images/06.jpg',
-                delv: 0,
-                isSale: false,
-            },
-        ]
+        products:[]
     },
     computed: {
         // 絞り込み後の商品リストを返す算出プロパティ
@@ -79,6 +36,12 @@ var app = new Vue({
                 if (isShow) {
                     newList.push(this.products[i]);
                 }
+            }
+            if (this.sortOrder == 2) {
+                // 価格が安い順に並び変える
+                newList.sort(function (a, b) {
+                    return a.price - b.price;
+                });
             }
             // 絞り込み後の商品リストを返す
             return newList;
