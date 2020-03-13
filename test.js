@@ -19,19 +19,24 @@ console.log(array_price);
 
 var products = [
     {
-        ID: 1, price: 1280,
+        ID: 1, 
+        price: 1280,
     },
     {
-        ID: 2, price: 1980,
+        ID: 2, 
+        price: 1980,
     },   
     {
-        ID: 3, price: 980,
+        ID: 3, 
+        price: 980,
     },
     {
-        ID: 4, price: 1680,
+        ID: 4, 
+        price: 1680,
     },
     {
-        ID: 5, price: 1780,
+        ID: 5, 
+        price: 1780,
     }
 ];
 

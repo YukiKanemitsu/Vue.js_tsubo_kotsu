@@ -1,53 +1,55 @@
-// 数値を通貨書式「##,###,###」に変換するフィルター
-Vue.filter('number_format', function (val) {
-    return val.toLocaleString();
-});
+// var btnLoad = document.querySelector('#load');
+// // 読み込み用のイベントハンドラを定義
+// btnLoad.addEventListener('click', function (event) {
+//     // 【手順1】XMLHttpRequestオブジェクトのインスタンスを生成
+//     var xmlHttpRequest = new XMLHttpRequest();
+//     // 【手順2】 通信状態の変化を監視するイベントハンドラを設定
+//     xmlHttpRequest.onreadystatechange = function () {
+//         // レスポンスの受信が正常に完了した時
+//         if (this.readyState == 4 /* && this.status == 200 */ ) {
+//             // 受信したデータをコンソールに出力する
+//             console.log(this.readyState, this.response);
+//         }
+//     };
+//     // 【手順3】レスポンスの形式を指定する
+//     xmlHttpRequest.responseType = 'json';
+//     // 【手順4】リクエストメソッドと読み込むファイルのパスを指定する
+//     xmlHttpRequest.open('GET', 'products.json');
+//     // 【手順5】リクエストを送信する(非同期通信を開始する)
+//     xmlHttpRequest.send();
+// });
 
-var app = new Vue({
-    el: '#app',
-    data: {
-        // 「セール対象」のチェック状態(true:チェックあり、false:チェック無し)
-        showSaleItem: false,
-        // 「送料無料」のチェック状態(true:チェックあり、false:チェック無し)
-        showDelvFree: false,
-        // 「並び替え」の選択値(1:標準、2:価格が安い順)
-        sortOrder: 1,
-        // 商品リスト
-        products:[]
-    },
-    computed: {
-        // 絞り込み後の商品リストを返す算出プロパティ
-        filteredList: function () {
-            // 絞り込み後の商品リスト格納する新しい配列
-            var newList = [];
-            for (var i = 0; i < this.products.length; i++) {
-                // 表示対象かどうかを判定する
-                var isShow = true;
-                // 1番目の商品が表示対象かどうかを判定する
-                if (this.showSaleItem && !this.products[i].isSale) {
-                    // 「セール対象」チェック有りで、セール対象ではない場合
-                    isShow = false; //この商品は表示しない
-                }
-                if (this.showDelvFree && this.products[i].delv > 0) {
-                    // 「送料無料」チェック有りで、送料有りの商品の場合
-                    isShow = false;
-                }
-                // 表示対象の商品だけを新しい配列に追加する
-                if (isShow) {
-                    newList.push(this.products[i]);
-                }
-            }
-            if (this.sortOrder == 2) {
-                // 価格が安い順に並び変える
-                newList.sort(function (a, b) {
-                    return a.price - b.price;
-                });
-            }
-            // 絞り込み後の商品リストを返す
-            return newList;
-        },
-        count: function () {
-           return this.filteredList.length; 
-        }
+$('#load').on('click', clickHandler);
+function clickHandler(event) {
+    // 非同期通信でJSONを読み込む
+    $.ajax({
+        url: 'products.json',
+        type: 'GET',
+        dataType: 'json'
+    })
+    .done(function (data, textStatus, jqXHR) {
+        updateScreen(data);
+    })
+    .fail(function (jqXHR, textStatus, errorThrown) {
+        console.log('通信が失敗しました');
+    });
+}
+
+// 商品一覧の描画を更新する
+function updateScreen(products) {
+    // 商品リストの子ノードをすべて削除する
+    $('#result').empty();   
+    // 商品の子ノードをDOMに挿入する
+    var list = "";
+    for (var i = 0; i < products.length; i++) {
+        list += '<div>';
+        list += '商品ID:' + products[i].id;
+        list += '商品名:' + products[i].name;
+        list += '料金:' + products[i].price;
+        list += '画像パス:' + products[i].image;
+        list += '送料:' + products[i].delv;
+        list += 'セール対象:' + products[i].isSale;
+        list += '</div>';        
     }
-});
+    $('#result').append(list);
+}
