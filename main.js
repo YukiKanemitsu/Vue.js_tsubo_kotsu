@@ -86,8 +86,37 @@ function tommorow() {
     return formatDate(dt);
 }
 
+// 税抜き金額を税込み金額に変換する関数
+function incTax(unTaxed) {
+    return Math.floor(unTaxed * (1 + taxRate));
+}
+
+// 数値を通貨書式「#,###,###」に変換する関数
+function number_format(val) {
+    return val.toLocaleString();
+}
+
+// 再計算した基本料金(税込)を返す関数
+function taxedBasePrice() {
+    // 基本料金(税込)を返す
+}
+
+// 再計算したオプション料金(税込)を返す関数
+function taxedOptPrice() {
+    // オプション料金(税込)を返す
+}
+
 // 金額の表示を更新する関数
 function updateForm() {
+    // フォームコントロールを取得
+    var sum_base = app.querySelector('#sum_base'); //基本料金(税込)
+    var sum_opt = app.querySelector('#sum_opt'); //オプション料金(税込)
+    var sum_total = app.querySelector('#sum_total'); //合計(税込)
+
     // 金額を再計算
+    var basePrice = taxedBasePrice();
+    var optPrice = taxedOptPrice();
+    var totalPrice = basePrice + optPrice;
+
     // 表示を更新
 }
