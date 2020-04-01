@@ -1,3 +1,44 @@
+var app = new Vue({
+    el: '#app',
+    data: {
+        // 消費税率
+        taxRate: 0.08,
+        // 制作したいムービー
+        movieType: '余興ムービー',
+        // 基本料金(税抜)
+        basePrice: 30000,
+        // 割増料金
+        addPrice1: 5000, //納期が1ヵ月未満の場合
+        addPrice2: 10000, //納期が3週間未満の場合
+        addPrice3: 15000, //納期が2週間未満の場合
+        addPrice4: 20000, //納期が1週間未満の場合
+        addPrice5: 40000, //納期が3日後の場合
+        addPrice6: 45000, //納期が2日後の場合
+        addPrice7: 50000, //納期が翌日の場合
+        // オプション料金(税抜)
+        optPrice: 0,
+        // 合計料金(税抜)
+        totalPrice: 0,
+        // 挙式日(日付)
+        wedding_date = '',
+        // DVD仕上がり予定日(日付)
+        delivery_date = '',
+        // オプション「BGM手配」
+        opt1_use: false,
+        opt1_price: 5000,
+        // オプション「撮影」
+        opt2_use: false,
+        opt2_price: 5000,
+        // オプション「DVD盤面印刷」
+        opt3_use: false,
+        opt3_price: 5000,
+        // オプション「写真スキャニング」
+        opt4_use: false,
+        opt4_price: 5000,
+    }
+});
+
+
 // -------------------------------------------
 // 変数宣言
 // -------------------------------------------
