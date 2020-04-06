@@ -1,3 +1,8 @@
+// 数値を通貨書式「#,###,###」に変換するフィルター
+Vue.filter('number_format', function(val) {
+    return val.toLocaleString();
+});
+
 var app = new Vue({
     el: '#app',
     data: {
@@ -138,6 +143,11 @@ var app = new Vue({
             // 基本料金(税込)とオプション料金(税込)の合計を返す
             return (this.taxedBasePrice + this.taxedOptPrice);
         },
+        tommorow: function () {
+            var dt = new Date();
+            dt.setDate(dt.getDate() + 1);
+            return this.formatDate(dt);
+        }
     },
     created: function () {
         // 今日の日付を取得
