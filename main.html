@@ -26,8 +26,8 @@
                         <div class="row">
                             <div class="col-md-5">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" 
-                                        name="movie_type" value="余興ムービー" checked>
+                                    <input class="form-check-input" type="radio" name="movie_type" 
+                                        id="type1" value="余興ムービー" v-model="movieType">
                                     <label class="form-check-label" for="type1">
                                         余興ムービー
                                     </label>
@@ -37,8 +37,8 @@
                             <div class="col-md-5">
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" 
-                                        name="movie_type" value="サプライズムービー">
-                                    <label class="form-check-label" for="type1">
+                                        id="type2" value="サプライズムービー" v-model="movieType">
+                                    <label class="form-check-label" for="type2">
                                         サプライズムービー
                                     </label>
                                 </div>
@@ -47,8 +47,8 @@
                             <div class="col-md-5">
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" 
-                                        name="movie_type" value="生い立ちムービー">
-                                    <label class="form-check-label" for="type1">
+                                        id="type3" value="生い立ちムービー" v-model="movieType">
+                                    <label class="form-check-label" for="type3">
                                         生い立ちムービー
                                     </label>
                                 </div>
@@ -57,8 +57,8 @@
                             <div class="col-md-5">
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" 
-                                        name="movie_type" value="オープニングムービー">
-                                    <label class="form-check-label" for="type1">
+                                        id="type4" value="オープニングムービー" v-model="movieType">
+                                    <label class="form-check-label" for="type4">
                                         オープニングムービー
                                     </label>
                                 </div>
@@ -76,8 +76,8 @@
                         </span>
                     </label>
                     <div class="col-md-9">
-                        <input id="wedding_date" class="form-control" 
-                            type="date" placeholder="日付をお選びください。">
+                        <input id="wedding_date" class="form-control" type="date" 
+                            placeholder="日付をお選びください。" v-model ="wedding_date">
                         <small class="form-text">
                             結婚式のお日にちを選択して下さい。
                         </small>
@@ -93,8 +93,8 @@
                         </span>
                     </label>
                     <div class="col-md-9">
-                        <input id="delivery_date" class="form-control" 
-                            type="date" min="2020-01-03" placeholder="日付をお選びください。">
+                        <input id="delivery_date" class="form-control" type="date" 
+                            :min="tommorow" placeholder="日付をお選びください。" v-model="delivery_date">
                         <small class="form-text">
                             挙式日の1週間前までにDVDが必要な場合が多い為、
                             仕上がり予定日を挙式日の一週間前に設定しております。
@@ -110,7 +110,7 @@
                     <div class="col-md-9">
                         <div class="input-group">
                             <input id="sum_base" class="form-control" 
-                            type="text" value="32,400" readonly>
+                            type="text" :value="taxedBasePrice | number_format" readonly>
                             <div class="input-group-appended">
                                 <label class="input-group-text">
                                     円
