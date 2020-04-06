@@ -11,8 +11,14 @@
 </head>
 <body>
     <div id="app">
-        <!-- (1)子コンポーネントをクリックすると親の「priceDown」が呼び出される -->
-        <my-product @click.native="priceDown" :price="price"></my-product>
+        <table border="1">
+            <tbody>
+                <tr is="my-row" v-for="item in products"
+                    v-bind="item"
+                    :key="item.id">
+                </tr>
+            </tbody>
+        </table>
     </div>
 <script src="https://jp.vuejs.org/js/vue.js"></script>
 <script src="my-product.js"></script>
