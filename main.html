@@ -12,14 +12,26 @@
 </head>
 <body>
     <div id="app" v-cloak>
-        <div class="container bg-dark text-white p-5">
+        <form action="">
+            <template v-for="option in movieTypeOptions">
+                <div class="form-check form-check-inline" :key="option.id">
+                    <input class="form-check-input" type="radio" name="movie_type"
+                        :id="option.id" :value="option.value" v-model="movieType">
+                    <label :for="option.id" class="form-check-label">
+                        {{ option.text }}
+                    </label>
+                </div>
+            </template>
+        </form>
+
+        <!-- <div class="container bg-dark text-white p-5">
             <h2 class="text-center border-bottom border-white pb-3 mb-5">
                 自動見積もりフォーム
             </h2>
-            <form>
+            <form> -->
 
                 <!-- ムービーの種類 -->
-                <div class="form-group row">
+                <!-- <div class="form-group row">
                     <label class="col-md-3 col-form-label pt-0">
                         制作したいムービー
                         <span class="badge badge-danger">
@@ -70,10 +82,10 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
                 <!-- 挙式日 -->
-                <div class="form-group row">
+                <!-- <div class="form-group row">
                     <label class="col-md-3 col-form-label pt-0" for="wedding_date">
                         挙式日
                         <span class="badge badge-danger">
@@ -87,10 +99,10 @@
                             結婚式のお日にちを選択して下さい。
                         </small>
                     </div>
-                </div>
+                </div> -->
 
                 <!-- DVD仕上がり日 -->
-                <div class="form-group row">
+                <!-- <div class="form-group row">
                     <label class="col-md-3 col-form-label pt-0" for="delivery_date">
                         DVD仕上がり日
                         <span class="badge badge-danger">
@@ -105,10 +117,10 @@
                             仕上がり予定日を挙式日の一週間前に設定しております。
                         </small>
                     </div>
-                </div>
+                </div> -->
 
                 <!-- 小計：基本料金 -->
-                <div class="form-group row">
+                <!-- <div class="form-group row">
                     <label class="col-md-3 col-form-label pt-0">
                         基本料金(税込)
                     </label>
@@ -123,10 +135,10 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
                 <!-- オプションメニュー -->
-                <div class="form-group row">
+                <!-- <div class="form-group row">
                     <label class="col-md-3 col-form-label pt-0">
                         オプションメニュー
                         <span class="badge badge-info">
@@ -189,10 +201,10 @@
                             </small>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
                 <!-- 小計:オプション料金 -->
-                <div class="form-group row">
+                <!-- <div class="form-group row">
                     <label class="col-md-3 col-form-label pt-0">
                         オプション料金(税込)
                     </label>
@@ -207,10 +219,10 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
                 <!-- 合計:基本料金⁺オプション料金 -->
-                <div class="form-group row">
+                <!-- <div class="form-group row">
                     <label class="col-md-3 col-form-label pt-0">
                        合計(税込)
                     </label>
@@ -225,7 +237,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 
             </form>
         </div>
