@@ -10,20 +10,12 @@
     <title>　</title>
 </head>
 <body>
-    <div id="app" v-cloak>
-        <p>
-            ↓ここにコンポーネントが入ります。
-        </p>
-        <my-component></my-component>
-    </div>
-    <div id="app2">
-        <p>
-            ↓ここにコンポーネントが入ります。
-        </p>
-        <my-component></my-component>
+    <div id="app">
+        <!-- (1)子コンポーネントをクリックすると親の「priceDown」が呼び出される -->
+        <my-product @click.native="priceDown" :price="price"></my-product>
     </div>
 <script src="https://jp.vuejs.org/js/vue.js"></script>
-<script src="my-component.js"></script>
+<script src="my-product.js"></script>
 <script src="main.js"></script>
 </body>
 </html>
