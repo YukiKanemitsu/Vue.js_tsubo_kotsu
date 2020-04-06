@@ -11,17 +11,13 @@
 </head>
 <body>
     <div id="app">
-        <table border="1">
-            <tbody>
-                <tr is="my-row" v-for="item in products"
-                    v-bind="item"
-                    :key="item.id">
-                </tr>
-            </tbody>
-        </table>
+        <select name="" id="">
+            <option is="my-option" v-for="item in products" 
+                v-bind="item" :key="item.id"></option>
+        </select>
     </div>
 <script src="https://jp.vuejs.org/js/vue.js"></script>
-<script src="my-product.js"></script>
+<script src="my-option.js"></script>
 <script src="main.js"></script>
 </body>
 </html>
