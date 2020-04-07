@@ -4,30 +4,28 @@ var productHeader = {
             <h1 class="pageTitle">
                 商品一覧
             </h1>
-            <!-- 検索欄 -->
+            <!--検索欄-->
             <div class="search">
                 <div class="result">
-                    検索結果
+                    検索結果 
                     <span class="count">
-                        {{ count }} 件
+                        {{count}}件
                     </span>
                 </div>
                 <div class="condition">
                     <div class="target">
-                        <label for="">
-                            <input type="checkbox" 
-                                name="" id=""
-                                :checked="showSaleItem"
-                                @change="$emit('showSaleItemChanged')"
-                                >
+                        <label>
+                            <input type="checkbox"
+                                v-bind:checked="showSaleItem" 
+                                v-on:change="$emit('showSaleItemChanged')"
+                            > 
                             セール対象
                         </label>
-                        <label for="">
-                            <input type="checkbox" 
-                                name="" id=""
-                                :checked="showDelvFree"
-                                @change="$emit('showDelvFreeChanged')"
-                                >
+                        <label>
+                            <input type="checkbox"
+                                v-bind:checked="showDelvFree"
+                                v-on:change="$emit('showDelvFreeChanged')"
+                            > 
                             送料無料
                         </label>
                     </div>
@@ -35,8 +33,10 @@ var productHeader = {
                         <label for="sort">
                             並び替え
                         </label>
-                        <select name="" id="sort" class="sorting" :value="sortOrder"
-                            @change="$emit('sortOrderChanged', parseInt($event.target.value))">
+                        <select id="sort" class="sorting"
+                            v-bind:value="sortOrder"
+                            v-on:change="$emit('sortOrderChanged',parseInt($event.target.value))"
+                        >
                             <option value="1">
                                 標準
                             </option>
@@ -47,11 +47,12 @@ var productHeader = {
                     </div>
                 </div>
             </div>
-        </header>`,
-        props: [
-            'count',
-            'showSaleItem',
-            'shohwDelvFree',
-            'sortOrder'
-        ]
+        </header>`
+    ,
+    props: [
+        'count', 
+        'showSaleItem', 
+        'showDelvFree', 
+        'sortOrder'
+    ]
 };
